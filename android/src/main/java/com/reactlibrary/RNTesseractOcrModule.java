@@ -33,7 +33,7 @@ public class RNTesseractOcrModule extends ReactContextBaseJavaModule {
 	@VisibleForTesting
 	private static final String REACT_CLASS = "RNTesseractOcr";
 
-	private static String DATA_PATH = Environment.getExternalStorageDirectory().toString() + File.separator;
+	private static String DATA_PATH;
 	private static final String TESSDATA = "tessdata";
 
 	private static final String LANG_AFRIKAANS = "afr";
@@ -81,8 +81,7 @@ public class RNTesseractOcrModule extends ReactContextBaseJavaModule {
 	public RNTesseractOcrModule(ReactApplicationContext reactContext) {
 		super(reactContext);
 		this.reactContext = reactContext;
-		if (!this.DATA_PATH.contains(reactContext.getPackageName()))
-			this.DATA_PATH += reactContext.getPackageName() + File.separator;
+		this.DATA_PATH = reactContext.getExternalFilesDir(null).getPath() + File.separator;
 	}
 
 	@Override
